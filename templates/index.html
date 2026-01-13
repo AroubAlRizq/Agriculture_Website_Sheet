@@ -19,83 +19,29 @@
                 </div>
             </div>
             <div style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 99px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; color: var(--cyan-accent);">
-                Batch Excel Processing
+                Smart Batch Processor
             </div>
         </header>
 
         <div class="glass-card">
             
-            <div class="form-group">
-                <label for="formula-select">1. Select Computation Model</label>
-                <div class="select-wrapper">
-                    <select id="formula-select">
-                        <option value="" disabled selected>-- Choose a Method --</option>
-                        
-                        <optgroup label="Vegetation Indices">
-                            <option value="ndvi">NDVI</option>
-                            <option value="gndvi">GNDVI</option>
-                            <option value="pri">PRI</option>
-                            <option value="ndre">NDRE</option>
-                            <option value="ccci">CCCI</option>
-                            <option value="rvi">RVI</option>
-                            <option value="evi">EVI</option>
-                            <option value="evi2">EVI 2</option>
-                            <option value="varigreen">VARIgreen</option>
-                            <option value="vari700">VARI700</option>
-                            <option value="tvi">TVI</option>
-                            <option value="mtvi1">MTVI 1</option>
-                            <option value="mtvi2">MTVI 2</option>
-                            <option value="mtci">MTCI</option>
-                            <option value="car">CAR</option>
-                            <option value="cari">CARI</option>
-                            <option value="mcari">MCARI</option>
-                            <option value="mcari1">MCARI 1</option>
-                            <option value="mcari2">MCARI 2</option>
-                            <option value="tcari">TCARI</option>
-                            <option value="wdvi">WDVI</option>
-                            <option value="pvi">PVI</option>
-                            <option value="savi">SAVI</option>
-                            <option value="tsavi">TSAVI</option>
-                            <option value="osavi">OSAVI</option>
-                            <option value="msavi">MSAVI</option>
-                            <option value="msavi2">MSAVI2</option>
-                            <option value="sarvi">SARVI</option>
-                        </optgroup>
-
-                        <optgroup label="Growing Degree Days (GDD)">
-                            <option value="gdd_arnold">Arnold</option>
-                            <option value="gdd_villa_nova">Villa-Nova</option>
-                            <option value="gdd_ometto">Ometto</option>
-                            <option value="gdd_snyder">Snyder</option>
-                        </optgroup>
-
-                        <optgroup label="Accumulation Chilling Units">
-                            <option value="chill_utah">Utah Model</option>
-                            <option value="chill_nc">North Carolina Model</option>
-                        </optgroup>
-
-                        <optgroup label="Evapotranspiration (ET)">
-                            <option value="fao56">FAO56 (Penman-Monteith)</option>
-                            <option value="hargreaves">Hargreaves</option>
-                            <option value="blaney_criddle">Blaney-Criddle</option>
-                            <option value="stephens_stewart">Stephens & Stewart</option>
-                            <option value="grassi">Grassi</option>
-                            <option value="linarce">Linarce</option>
-                        </optgroup>
-                    </select>
-                </div>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Intelligent Calculation</h2>
+                <p style="color: var(--text-soft); font-size: 0.95rem;">
+                    Upload your dataset. The system will automatically detect available variables 
+                    and compute <strong>all possible</strong> agricultural indices and models.
+                </p>
             </div>
 
-            <div class="form-group" style="margin-top: 2rem;">
-                <label for="excel-file">2. Upload Excel Data Sheet (.xlsx)</label>
+            <div class="form-group">
                 <div class="file-upload-wrapper">
                     <input type="file" id="excel-file" accept=".xlsx, .xls">
-                    <p class="hint-text">Ensure your Excel columns match variable names (e.g., "NIR", "Red", "T_max")</p>
+                    <p class="hint-text">Supported: .xlsx, .xls (Ensure headers like 'NIR', 'Red', 'T_mean')</p>
                 </div>
             </div>
 
-            <button id="calc-btn">Process & Download Results</button>
-            <div id="loading-msg" class="hidden">Processing... Please wait.</div>
+            <button id="calc-btn">Auto-Process Data</button>
+            <div id="loading-msg" class="hidden">Analyzing variables & computing models...</div>
 
         </div>
 
