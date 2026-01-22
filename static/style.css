@@ -1,227 +1,29 @@
 /* =========================
-   1. Root Variables (Dark Mode with Green Accents)
+   7. Navigation Bar Styles
    ========================= */
-:root {
-  --bg-main: #120822;
-  --bg-secondary: #1b0b2e;
-  --bg-card: rgba(255, 255, 255, 0.05);
-
-  --text-main: #ede9fe;
-  --text-soft: #c4b5fd;
-  --text-muted: #9ca3af;
-
-  --purple-accent: #7c3aed;
-  --blue-accent: #3b82f6;
-  --cyan-accent: #22d3ee;
-  
-  --warm-accent: #10b981; /* Emerald Green */
-
-  --glow-blue: 0 0 20px rgba(59, 130, 246, 0.35);
-  --glow-warm: 0 0 20px rgba(16, 185, 129, 0.35); 
-
-  --bg-grad-1: radial-gradient(circle at top right, rgba(59, 130, 246, 0.15), transparent 40%);
-  --bg-grad-2: radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.15), transparent 40%); 
-  --bg-grad-3: transparent;
-
-  --headline-grad: linear-gradient(90deg, var(--purple-accent), var(--blue-accent), var(--warm-accent));
-
-  --radius: 24px;
-  --transition: 0.25s ease;
-
-  --border-soft: 1px solid rgba(255, 255, 255, 0.10);
-  --border-softer: 1px solid rgba(255, 255, 255, 0.07);
+.nav-links { 
+    display: flex; 
+    gap: 1.5rem; 
+    align-items: center; 
 }
 
-/* =========================
-   2. Global Reset & Body
-   ========================= */
-*, *::before, *::after { box-sizing: border-box; }
-
-body {
-  margin: 0; padding: 0; min-height: 100vh;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
-  background: var(--bg-grad-1), var(--bg-grad-2), var(--bg-main);
-  background-attachment: fixed;
-  color: var(--text-main);
-  display: flex; justify-content: center; align-items: center; 
+.nav-btn { 
+    text-decoration: none; 
+    color: var(--text-muted); 
+    font-size: 0.9rem; 
+    font-weight: 500;
+    transition: var(--transition); 
+    padding: 0.5rem 0.8rem;
+    border-radius: 12px;
 }
 
-/* =========================
-   3. Layout Containers
-   ========================= */
-.app {
-  width: 100%; max-width: 800px; padding: 2rem 1.5rem;
+.nav-btn:hover { 
+    color: var(--text-main); 
+    background: rgba(255, 255, 255, 0.05);
 }
 
-/* Top Navigation Bar */
-.topbar {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1rem 1.5rem; border-radius: 22px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
-  border: var(--border-soft); backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); margin-bottom: 2rem;
+.nav-btn.active { 
+    color: var(--cyan-accent); 
+    background: rgba(34, 211, 238, 0.1); /* Subtle cyan tint */
+    border: 1px solid rgba(34, 211, 238, 0.2);
 }
-
-.brand { display: flex; align-items: center; gap: 1rem; }
-.logo-circle {
-  width: 40px; height: 40px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--blue-accent), var(--purple-accent));
-  display: grid; place-items: center; font-weight: bold; font-size: 1.2rem;
-  box-shadow: var(--glow-blue);
-}
-.brand-text h1 {
-  font-size: 1.1rem; margin: 0;
-  background: var(--headline-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  font-weight: 700;
-}
-.brand-text p { margin: 0; font-size: 0.8rem; color: var(--text-soft); }
-
-/* =========================
-   4. Glass Card
-   ========================= */
-.glass-card {
-  padding: 2.5rem; border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.03);
-  border: var(--border-soft); backdrop-filter: blur(15px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-}
-
-/* =========================
-   5. Interactive Inputs (Bubbles)
-   ========================= */
-.form-group { margin-bottom: 1.5rem; }
-label {
-  display: block; margin-bottom: 0.6rem; margin-left: 0.8rem;
-  color: var(--text-soft); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.5px;
-}
-
-/* Input Styling */
-select, input {
-  width: 100%; padding: 1.2rem 1.5rem;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(0, 0, 0, 0.25);
-  color: var(--text-main);
-  font-size: 1rem; font-family: inherit;
-  transition: var(--transition);
-  backdrop-filter: blur(5px); appearance: none;
-}
-
-select:focus, input:focus {
-  outline: none; background: rgba(0, 0, 0, 0.4);
-  border-color: var(--blue-accent); box-shadow: var(--glow-blue);
-  transform: translateY(-2px);
-}
-
-/* --- FIX FOR DROPDOWN OPTIONS --- */
-/* This forces the dropdown menu itself to be dark */
-select option, select optgroup {
-    background-color: #120822; /* Force Dark Navy Background */
-    color: #ffffff;            /* Force White Text */
-    padding: 10px;
-}
-
-/* Custom Select Arrow */
-.select-wrapper { position: relative; }
-.select-wrapper::after {
-  content: '▼'; font-size: 0.8rem; color: var(--text-muted);
-  position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
-  pointer-events: none;
-}
-
-.inputs-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1.5rem;
-}
-
-/* =========================
-   6. Buttons & Results
-   ========================= */
-button {
-  width: 100%; padding: 1.2rem; margin-top: 1rem;
-  border: none; border-radius: 99px;
-  background: linear-gradient(135deg, var(--blue-accent), var(--warm-accent));
-  color: #0f172a; font-weight: 700; font-size: 1.1rem;
-  cursor: pointer; transition: var(--transition);
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
-}
-button:hover {
-  transform: translateY(-3px); box-shadow: 0 0 25px rgba(16, 185, 129, 0.5);
-}
-
-.hidden { display: none; }
-#result-area {
-  margin-top: 2rem; padding: 1.5rem; border-radius: 20px;
-  background: rgba(16, 185, 129, 0.1); 
-  border: 1px solid rgba(16, 185, 129, 0.3); text-align: center;
-  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-@keyframes popIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.result-value {
-  font-size: 3rem; font-weight: 800; margin-bottom: 0.5rem;
-  background: var(--headline-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-.result-unit {
-  color: var(--text-soft); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;
-}
-footer {
-  text-align: center; margin-top: 3rem; color: var(--text-muted); font-size: 0.85rem;
-}
-
-/* ... Keep all your existing Root variables and Body styles ... */
-/* ... Keep topbar, glass-card, etc ... */
-
-/* ADD THIS for File Upload Styling */
-.file-upload-wrapper {
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px dashed rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 1.5rem;
-    text-align: center;
-    transition: var(--transition);
-}
-
-.file-upload-wrapper:hover {
-    background: rgba(0, 0, 0, 0.3);
-    border-color: var(--blue-accent);
-}
-
-input[type="file"] {
-    background: transparent;
-    border: none;
-    color: var(--text-main);
-    padding: 0;
-    margin-bottom: 0.5rem;
-}
-
-/* Custom file input text color fix */
-input[type="file"]::file-selector-button {
-    background: var(--purple-accent);
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-right: 1rem;
-    font-weight: 600;
-}
-
-.hint-text {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin: 0;
-    font-style: italic;
-}
-
-#loading-msg {
-    text-align: center;
-    margin-top: 1rem;
-    color: var(--cyan-accent);
-    font-weight: 600;
-    display: none; /* Hidden by default */
-}
-
-/* ... Keep button and footer styles ... */
