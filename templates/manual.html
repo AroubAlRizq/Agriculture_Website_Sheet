@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCM Agricultural Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Simple Nav Style Injection */
+        .nav-links { display: flex; gap: 1rem; align-items: center; }
+        .nav-btn { text-decoration: none; color: rgba(255,255,255,0.7); font-size: 0.9rem; transition: 0.3s; }
+        .nav-btn:hover, .nav-btn.active { color: var(--cyan-accent, #00f3ff); }
+    </style>
+</head>
+<body>
+
+    <div class="app">
+        <header class="topbar">
+            <div class="brand">
+                <div class="logo-circle">N</div>
+                <div class="brand-text">
+                    <h1>Agriculture Indices Calculator</h1>
+                    <p>National Center of Meteorology</p>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}" class="nav-btn active">Single Calculation</a>
+                <a href="{{ url_for('batch_page') }}" class="nav-btn">Batch Processing</a>
+            </div>
+        </header>
+
+        <div class="glass-card">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Manual Calculation</h2>
+                <p style="color: var(--text-soft, #aaa); font-size: 0.95rem;">Select a model and input values manually.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="formula-select">Select Mathematical Model</label>
+                <div class="select-wrapper">
+                    <select id="formula-select">
+                        <option value="" disabled selected>-- Choose a Method --</option>
+                        
+                        <optgroup label="Evapotranspiration (ET)">
+                            <option value="fao56">FAO56 (Penman-Monteith)</option>
+                            <option value="hargreaves">Hargreaves Method</option>
+                            <option value="blaney_criddle">Blaney-Criddle Method</option>
+                            <option value="stephens_stewart">Stephens & Stewart</option>
+                            <option value="grassi">Grassi Method</option>
+                            <option value="linarce">Linarce Method</option>
+                        </optgroup>
+
+                        <optgroup label="Growing Degree Days (GDD)">
+                            <option value="gdd_arnold">Arnold (General)</option>
+                            <option value="gdd_villa_nova">Villa-Nova (All Versions)</option>
+                            <option value="gdd_ometto">Ometto (All Versions)</option>
+                            <option value="gdd_snyder">Snyder (Sine Method - All Versions)</option>
+                        </optgroup>
+
+                        <optgroup label="Accumulation Chilling Units (Hourly)">
+                            <option value="chill_utah">Utah Model</option>
+                            <option value="chill_nc">North Carolina Model</option>
+                        </optgroup>
+
+                        <optgroup label="Vegetation Indices">
+                            <option value="ndvi">NDVI (Normalized Difference Vegetation Index)</option>
+                            <option value="gndvi">GNDVI (Green Normalized Difference)</option>
+                            <option value="pri">PRI (Photochemical Reflectance Index)</option>
+                            <option value="ndre">NDRE (Normalized Difference Red Edge)</option>
+                            <option value="ccci">CCCI (Canopy Chlorophyll Content Index)</option>
+                            <option value="rvi">RVI (Ratio Vegetation Index)</option>
+                            <option value="evi">EVI (Enhanced Vegetation Index)</option>
+                            <option value="evi2">EVI 2 (Enhanced Vegetation Index 2)</option>
+                            <option value="varigreen">VARIgreen (Visible Atmospherically Resistant)</option>
+                            <option value="vari700">VARI700 (Visible Atmospherically Resistant 700nm)</option>
+                            <option value="tvi">TVI (Triangular Vegetation Index)</option>
+                            <option value="mtvi1">MTVI 1 (Modified Triangular Vegetation Index 1)</option>
+                            <option value="mtvi2">MTVI 2 (Modified Triangular Vegetation Index 2)</option>
+                            <option value="mtci">MTCI (MERIS Terrestrial Chlorophyll Index)</option>
+                            <option value="car">CAR (Chlorophyll Absorption Reflectance)</option>
+                            <option value="cari">CARI (Chlorophyll Absorption Reflectance Index)</option>
+                            <option value="mcari">MCARI (Modified Chlorophyll Absorption)</option>
+                            <option value="mcari1">MCARI 1</option>
+                            <option value="mcari2">MCARI 2</option>
+                            <option value="tcari">TCARI (Transformed Chlorophyll Absorption)</option>
+                            <option value="wdvi">WDVI (Weighted Difference Vegetation Index)</option>
+                            <option value="pvi">PVI (Perpendicular Vegetation Index)</option>
+                            <option value="savi">SAVI (Soil-Adjusted Vegetation Index)</option>
+                            <option value="tsavi">TSAVI (Transformed Soil-Adjusted)</option>
+                            <option value="osavi">OSAVI (Optimized Soil-Adjusted)</option>
+                            <option value="msavi">MSAVI (Modified Soil-Adjusted)</option>
+                            <option value="sarvi">SARVI (Soil & Atmospherically Resistant)</option>
+                            <option value="msavi2">MSAVI2 (Modified Soil Adjusted 2)</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div id="inputs-container" class="inputs-grid"></div>
+
+            <button id="calc-btn" onclick="calculate()">Compute Index</button>
+
+            <div id="result-area" class="hidden">
+                <div class="result-value" id="result-display">--</div>
+                <div class="result-unit" id="unit-display"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Calculations based on FAO standards & Scientific literature.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
